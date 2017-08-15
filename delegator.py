@@ -130,7 +130,7 @@ class Command(object):
     def std_in(self):
         return self.subprocess.stdin
 
-    def run(self, block=True, binary=False):
+    def run(self, block=True, binary=False, chdir=None):
         """Runs the given command, with or without pexpect functionality enabled."""
         self.blocking = block
 
@@ -138,7 +138,7 @@ class Command(object):
         if self.blocking:
             popen_kwargs = self._default_popen_kwargs.copy()
             popen_kwargs['universal_newlines'] = not binary
-            s = subprocess.Popen(self._popen_args, **popen_kwargs)
+            s = subprocess.Popen(self._popen_args, **popen_kwargs,cwd=chdir)
         # Otherwise, use pexpect.
         else:
             pexpect_kwargs = self._default_pexpect_kwargs.copy()
@@ -146,7 +146,7 @@ class Command(object):
                 pexpect_kwargs['encoding'] = None
             # Enable Python subprocesses to work with expect functionality.
             pexpect_kwargs['env']['PYTHONUNBUFFERED'] = '1'
-            s = PopenSpawn(self._popen_args, **pexpect_kwargs)
+            s = PopenSpawn(self._popen_args, **pexpect_kwargs,cwd=chdir)
         self.subprocess = s
         self.was_run = True
 
