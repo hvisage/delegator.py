@@ -138,7 +138,7 @@ class Command(object):
         if self.blocking:
             popen_kwargs = self._default_popen_kwargs.copy()
             popen_kwargs['universal_newlines'] = not binary
-            s = subprocess.Popen(self._popen_args, **popen_kwargs,cwd=chdir)
+            s = subprocess.Popen(self._popen_args, **popen_kwargs)
         # Otherwise, use pexpect.
         else:
             pexpect_kwargs = self._default_pexpect_kwargs.copy()
@@ -146,7 +146,7 @@ class Command(object):
                 pexpect_kwargs['encoding'] = None
             # Enable Python subprocesses to work with expect functionality.
             pexpect_kwargs['env']['PYTHONUNBUFFERED'] = '1'
-            s = PopenSpawn(self._popen_args, **pexpect_kwargs,cwd=chdir)
+            s = PopenSpawn(self._popen_args, **pexpect_kwargs)
         self.subprocess = s
         self.was_run = True
 
