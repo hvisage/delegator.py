@@ -30,12 +30,12 @@ required = [
 
 setup(
     name='delegator.py',
-    version='0.0.13',
-    description='Subprocesses for Humans 2.0.',
+    version='0.0.13hvt',
+    description='Subprocesses for Humans 2.1_hvt',
     long_description=long_description,
-    author='Kenneth Reitz',
-    author_email='me@kennethreitz.com',
-    url='https://github.com/kennethreitz/delegator',
+    author='Kenneth Reitz, ammended Hendrik Visage',
+    author_email='me@kennethreitz.com, hvisage@gmail.com',
+    url='https://github.com/hvisage/delegator_py',
     py_modules=['delegator'],
     install_requires=required,
     license='MIT',
